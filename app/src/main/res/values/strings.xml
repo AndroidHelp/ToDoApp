@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ToDoApp</string>
+    <string name="menu_add_todo">Add To Do</string>
+    <string name="menu_pin">Pinned</string>
+    <string name="menu_search">Search</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_title">Title</string>
+    <string name="warning_title">Enter title first</string>
+    <string name="warning_description">Enter description first</string>
+    <string name="action_save">Save</string>
+    <string name="content_description_pin">Pin Item</string>
+    <string name="action_pin">Pin</string>
+    <string name="action_delete">Delete</string>
+    <string name="label_pinned">Pinned ToDo\'s</string>
+    <string name="label_todos">ToDo\'s</string>
+    <string name="formatted_message_success">Welcome %1$s to ToDoApp</string>
+</resources>
