@@ -36,6 +36,10 @@ class LoginFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        if (AppPreferences.getLoginStatus()) {
+            Navigation.findNavController(requireView()).navigate(LoginFragmentDirections.actionLoginFragmentToToDoListFragment())
+            return
+        }
         sign_in_button.setSize(SignInButton.SIZE_WIDE)
         sign_in_button.setOnClickListener {
             googleSignIn()
@@ -75,10 +79,10 @@ class LoginFragment : Fragment() {
 
     private fun updateUI(account: GoogleSignInAccount?) {
         println("update ${account?.account?.name}")
+        requireView().showSnackBar(getString(R.string.formatted_message_success, account?.displayName))
         Handler(Looper.getMainLooper()).postDelayed({
-            requireView().showSnackBar(getString(R.string.formatted_message_success, account?.displayName))
             Navigation.findNavController(requireView()).navigate(R.id.toDoListFragment)
             AppPreferences.saveLoginStatus(true)
-        }, 1000)
+        }, 1500)
     }
 }

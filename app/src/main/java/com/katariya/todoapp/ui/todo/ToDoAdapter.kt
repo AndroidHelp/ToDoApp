@@ -42,11 +42,12 @@ class ToDoAdapter(
                     if (item.itemId == R.id.action_menu_pin) {
                         toDoItem.pin = true
                         itemClickListener.onItemPin(toDoItem)
-                        // Toast.makeText(context, "Pin", Toast.LENGTH_SHORT).show()
+                    }
+                    if (item.itemId == R.id.action_menu_update) {
+                        itemClickListener.updateItem(toDoItem)
                     }
                     if (item.itemId == R.id.action_menu_delete) {
                         itemClickListener.onItemDelete(toDoItem)
-                        //   Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show()
                     }
                     return true
                 }
@@ -62,7 +63,7 @@ class ToDoAdapter(
             itemView.apply {
                 tvTitle.text = toDoItem.title
                 tvDescription.text = toDoItem.description
-                println("todo status ${toDoItem.pin}")
+                println("todo status ${toDoItem.id}")
             }
         }
     }
@@ -103,5 +104,6 @@ class ToDoAdapter(
 
 interface ToDoItemClickListener {
     fun onItemDelete(toDoItem: ToDoItem)
+    fun updateItem(toDoItem: ToDoItem)
     fun onItemPin(toDoItem: ToDoItem)
 }

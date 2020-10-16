@@ -7,6 +7,7 @@ class ToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
 
     fun getToDoItems() = repository.getToDoList()
     fun getPinToDoItems() = repository.getPinToDoList()
+    fun deleteAllToDoData() = repository.deleteAllToDoData()
 
     fun updateToDo(toDoItem: ToDoItem) {
         repository.updateToDo(toDoItem)

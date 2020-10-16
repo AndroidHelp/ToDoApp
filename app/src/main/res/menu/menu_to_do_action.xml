@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_menu_pin"
         android:icon="@drawable/ic_pin_icon_grey"
         android:title="@string/action_pin"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/action_menu_update"
+        android:icon="@drawable/ic_edit_icon"
+        android:title="@string/action_edit"
         app:showAsAction="always|withText" />
     <item
         android:id="@+id/action_menu_delete"

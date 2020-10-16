@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -69,16 +70,37 @@ class ToDoListFragment : Fragment(), ToDoItemClickListener, PinToDoItemClickList
                     .navigate(R.id.action_toDoListFragment_to_addToDoFragment)
                 true
             }
+            R.id.menu_logout -> {
+                confirmationDialog()
+                true
+            }
             else -> NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
         }
     }
 
+    private fun confirmationDialog() {
+        var alert: AlertDialog? = null
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Logout ?")
+        alertDialog.setMessage("Make sure you want to logout, All data will be deleted.")
+        alertDialog.setPositiveButton(
+            "yes"
+        ) { _, _ ->
+            AppPreferences.clearAll()
+            viewModel.deleteAllToDoData()
+            Navigation.findNavController(requireView()).navigateUp()
+        }
+        alertDialog.setNegativeButton(
+            "No"
+        ) { _, _ -> alert?.dismiss() }
+        alert = alertDialog.create()
+        alert.setCanceledOnTouchOutside(false)
+        alert.show()
+
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        if (!AppPreferences.getLoginStatus()) {
-            Navigation.findNavController(requireView()).navigate(R.id.loginFragment)
-            return
-        }
         setHasOptionsMenu(true)
 
         //adapters
@@ -133,6 +155,11 @@ class ToDoListFragment : Fragment(), ToDoItemClickListener, PinToDoItemClickList
 
     override fun onItemDelete(toDoItem: ToDoItem) {
         viewModel.deleteToDo(toDoItem)
+    }
+
+    override fun updateItem(toDoItem: ToDoItem) {
+        val action = ToDoListFragmentDirections.actionToDoListFragmentToAddToDoFragment(toDoItem)
+        Navigation.findNavController(requireView()).navigate(action)
     }
 
     override fun onItemPin(toDoItem: ToDoItem) {

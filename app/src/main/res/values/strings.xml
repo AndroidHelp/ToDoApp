@@ -14,4 +14,7 @@
     <string name="label_pinned">Pinned ToDo\'s</string>
     <string name="label_todos">ToDo\'s</string>
     <string name="formatted_message_success">Welcome %1$s to ToDoApp</string>
+    <string name="menu_logout">Logout</string>
+    <string name="action_edit">Update</string>
+    <string name="warning_some_went_wrong">Oops, something went wrong.</string>
 </resources>

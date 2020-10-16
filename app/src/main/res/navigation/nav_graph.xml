@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/toDoListFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/toDoListFragment"
@@ -17,9 +17,19 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.katariya.todoapp.ui.login.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_toDoListFragment"
+            app:destination="@id/toDoListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addToDoFragment"
         android:name="com.katariya.todoapp.ui.todo.add.AddToDoFragment"
-        android:label="AddToDoFragment" />
+        android:label="AddToDoFragment" >
+        <argument
+            android:name="todoItem"
+            app:argType="com.katariya.todoapp.data.database.ToDoItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

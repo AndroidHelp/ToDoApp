@@ -21,4 +21,8 @@ object AppPreferences {
     fun getLoginStatus(): Boolean {
         return preferences.getBoolean("logging", false)
     }
+
+    fun clearAll(){
+        preferences.edit().clear().apply()
+    }
 }

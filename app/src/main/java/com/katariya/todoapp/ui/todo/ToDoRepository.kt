@@ -48,4 +48,13 @@ class ToDoRepository(application: Application) : CoroutineScope {
             }
         }
     }
+
+    fun deleteAllToDoData() {
+        launch {
+            withContext(Dispatchers.IO) {
+                toDoDao?.deleteAllToDoData()
+            }
+        }
+    }
+
 }
